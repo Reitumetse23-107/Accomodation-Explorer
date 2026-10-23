@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Accommodation Explorer: know what a fair night costs in Francistown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div id="topbar"><div class="in"><button class="logo" data-go="home"><img src="{{ url_for('static', filename='accommodation-explorer-logo.png') }}" alt="" aria-hidden="true">Accommodation Explorer</button><nav aria-label="Main"><button class="tab" id="tab-home" data-go="home">Home</button><button class="tab" id="tab-explore" data-go="explore">Explore</button><button class="tab" id="tc" data-go="compare">Compare (0)</button><button class="tab" data-scroll="honest">About the data</button><button class="tab theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">Dark mode</button></nav></div></div>
+<section id="v-home"><div class="hero">
+<div class="w">
+
+<div class="hg" id="top">
+<div>
+<span class="eyebrow">Francistown accommodation, benchmarked</span>
+<h1>Know what a fair night really costs.</h1>
+<p class="lead">Compare guesthouses, lodges and B&amp;Bs in Francistown against a data-driven fair price, so you can spot a good deal and avoid paying too much.</p>
+<div class="cta"><button class="btn p" data-go="explore">Explore listings</button><button class="btn g" data-scroll="how">See how it works</button></div>
+</div>
+<div class="panel" role="img" aria-label="Sample comparison of listed price against fair price for three Francistown listings">
+<h2>Listed price vs fair price</h2><span class="mut small-note">Three real listings from our data</span>
+<div class="ex"><div class="nm"><span>Fabulous Rest Inn</span><span class="pill">▼ Under-priced</span></div><div class="bars"><div class="br l"><span>Listed</span><div class="tr"><i class="width-24"></i></div><b>P300</b></div><div class="br f"><span>Fair</span><div class="tr"><i class="width-49"></i></div><b>P607</b></div></div></div>
+<div class="ex"><div class="nm"><span>Dudes guesthouse</span><span class="pill">▼ Under-priced</span></div><div class="bars"><div class="br l"><span>Listed</span><div class="tr"><i class="width-24"></i></div><b>P300</b></div><div class="br f"><span>Fair</span><div class="tr"><i class="width-46"></i></div><b>P569</b></div></div></div>
+<div class="ex"><div class="nm"><span>Woodlands Stop Over and Lodge</span><span class="pill o">▲ Over-priced</span></div><div class="bars"><div class="br l"><span>Listed</span><div class="tr"><i class="width-full"></i></div><b>P1,230</b></div><div class="br f"><span>Fair</span><div class="tr"><i class="width-58"></i></div><b>P719</b></div></div></div>
+</div>
+</div>
+</div>
+</div>
+
+<div>
+<div class="w stats"><div class="sg">
+<div><strong>23</strong><span class="mut">Francistown listings analysed</span></div>
+<div><strong>P243–P1,230</strong><span class="mut">Nightly price range found</span></div>
+<div><strong>6 · 12 · 5</strong><span class="mut">Under-priced · fair · over-priced</span></div>
+<div><strong>≈ P191</strong><span class="mut">Typical error of the fair-price estimate</span></div>
+</div></div>
+
+<section class="s" id="how"><div class="w">
+<h2>From scattered listings to one clear comparison</h2>
+<p class="sub mut">Prices in Francistown are hard to judge when every place is listed on a different site. We put them side by side and measure each one against what similar stays typically cost.</p>
+<div class="cards">
+<div class="c"><span class="num">1</span><h3>Collect</h3><p class="mut no-margin">We gathered listings with price, distance from the city centre, review score, review count, room type and star rating.</p></div>
+<div class="c"><span class="num">2</span><h3>Estimate</h3><p class="mut no-margin">A regression model, tested with leave-one-out validation, estimates a fair nightly price for each listing.</p></div>
+<div class="c"><span class="num">3</span><h3>Compare</h3><p class="mut no-margin">Every listing is flagged under-priced, fair or over-priced, then scored and ranked so you can filter and compare side by side.</p></div>
+</div></div></section>
+
+<section class="s" id="picks"><div class="w">
+<h2>Best value right now</h2>
+<p class="sub mut">The three highest-ranked listings, scored on price against fair price, review score, location and popularity.</p>
+<div class="best-value-carousel" id="best-value-carousel" role="region" aria-label="Best value accommodation listings" aria-roledescription="carousel">
+<div class="best-value-viewport">
+<div class="best-value-track" id="best-value-track" aria-live="polite">
+<article class="c"><span class="pill">▼ Under-priced</span><h3>Dudes guesthouse</h3><span class="mut">Double · 2.4 km from centre</span><div class="pr"><div><span class="mut">Listed</span><strong>P300</strong></div><div><span class="mut">Fair price</span><strong>P569</strong></div><div><span class="mut">Review score</span><strong>9.0</strong></div></div><span class="mut small-note">Rank #1 · based on 10 reviews</span></article>
+<article class="c"><span class="pill">▼ Under-priced</span><h3>Fabulous Rest Inn</h3><span class="mut">Single · 4.7 km from centre</span><div class="pr"><div><span class="mut">Listed</span><strong>P300</strong></div><div><span class="mut">Fair price</span><strong>P607</strong></div><div><span class="mut">Review score</span><strong>8.7</strong></div></div><span class="mut small-note">Rank #2 · based on 54 reviews</span></article>
+<article class="c"><span class="pill">▼ Under-priced</span><h3>Diggers Inn</h3><span class="mut">Deluxe Family · 0.9 km from centre</span><div class="pr"><div><span class="mut">Listed</span><strong>P1,215</strong></div><div><span class="mut">Fair price</span><strong>P1,447</strong></div><div><span class="mut">Review score</span><strong>8.2</strong></div></div><span class="mut small-note">Rank #3 · based on 539 reviews</span></article>
+</div>
+</div>
+<div class="carousel-controls">
+<button class="carousel-button" id="carousel-previous" type="button" aria-label="Show previous best value listing">←</button>
+<span id="carousel-position" aria-live="polite">1 / 3</span>
+<button class="carousel-button" id="carousel-next" type="button" aria-label="Show next best value listing">→</button>
+</div>
+</div></div></section>
+
+<section class="s" id="honest"><div class="w">
+<h2>Honest about what the data can tell you</h2>
+<p class="sub mut">With 23 listings, the fair price is a guide, not a verdict. Its typical error is about P191, so we only flag a listing when its gap from the fair price is larger than that. As more listings are collected, the estimate gets sharper.</p>
+<div class="band"><div><h2>See every listing, filter it, compare it.</h2><p>Sort by best value, narrow by distance, price and room type, and compare up to three listings side by side.</p></div>
+<div><button class="btn p" data-go="explore">Explore listings</button></div></div>
+</div></section>
+</div>
+
+</section>
+<section id="v-explore" hidden><div class="wrap">
+<aside aria-label="Filters">
+<div class="f"><label for="sort">Sort by</label><select id="sort"><option value="score">Best score</option><option value="price">Lowest price</option><option value="value">Best value (biggest under-priced gap)</option></select></div>
+<div class="f"><label for="dist">Distance from centre: up to <span id="dv"></span> km</label><input type="range" id="dist" min="1" step="1"></div>
+<div class="f"><span>Price per night (P)</span><div class="two"><input type="number" id="pmin" aria-label="Minimum price" placeholder="Min"><input type="number" id="pmax" aria-label="Maximum price" placeholder="Max"></div></div>
+<div class="f"><label for="stars">Star rating</label><select id="stars"><option value="">Any</option><option value="3">3 stars</option><option value="4">4 stars</option><option value="0">Not rated</option></select></div>
+<div class="f"><label for="seg">Segment</label><select id="seg"><option value="">All</option><option>Budget</option><option>Mid-range</option><option>Premium</option></select></div>
+<div class="f"><span>Room type</span><div id="rooms"></div></div>
+<div class="f"><span>Price flag</span><div id="flags"></div></div>
+<button class="btn" id="reset">Reset filters</button>
+</aside>
+<main><div class="bar"><strong id="count"></strong></div><div class="grid" id="grid"></div>
+<p class="note" id="note"></p></main>
+</div>
+</section>
+<section id="v-compare" hidden><div class="wrap single-column"><div>
+<div class="bar"><div><h2 class="no-margin">Compare listings</h2><span class="mut">Pick up to 3 on the Browse view</span></div><button class="btn" id="clear">Clear selection</button></div>
+<div id="ctab"></div></div></div></section>
+<footer>
+<div class="social-links" aria-label="Social media contacts">
+<a href="https://www.instagram.com/r_r4y_r/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="social-dot" cx="18" cy="6" r="1"></circle></svg>
+</a>
+<a href="https://www.facebook.com/profile.php?id=61593907932088" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path class="facebook-mark" d="M13.5 21v-8h2.8l.4-3.1h-3.2v-2c0-.9.3-1.5 1.6-1.5H17V3.6c-.6-.1-1.4-.2-2.5-.2-2.5 0-4.2 1.5-4.2 4.3v2.2H7.5V13h2.8v8z"></path></svg>
+</a>
+</div>
+<div id="foot"></div>
+<div class="creators">
+<h2>Creators</h2>
+<ul>
+<li>Phenyo Bagwasi</li>
+<li>Reitumetse Ray Raphaka</li>
+<li>Flora Moleki</li>
+<li>Papi Miguel Tsekane</li>
+<li>Phetso Motai</li>
+<li>Jael Pelotona</li>
+</ul>
+</div>
+</footer>
+<script>
+const DATA = {{ explorer_data|tojson }};
+const L = DATA.listings, M = DATA.meta;
+const $ = id => document.getElementById(id);
+const themeToggle = $("theme-toggle");
+const savedTheme = localStorage.getItem("accommodation-explorer-theme");
+if (savedTheme === "light" || savedTheme === "dark") {
+  document.documentElement.dataset.theme = savedTheme;
+}
+function syncThemeToggle() {
+  const theme = document.documentElement.dataset.theme
+    || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const isDark = theme === "dark";
+  themeToggle.textContent = isDark ? "Light mode" : "Dark mode";
+  themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
+  themeToggle.setAttribute("aria-pressed", String(isDark));
+}
+themeToggle.addEventListener("click", () => {
+  const currentTheme = document.documentElement.dataset.theme
+    || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const nextTheme = currentTheme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = nextTheme;
+  localStorage.setItem("accommodation-explorer-theme", nextTheme);
+  syncThemeToggle();
+});
+syncThemeToggle();
+const carousel = $("best-value-carousel");
+const carouselTrack = $("best-value-track");
+const carouselPosition = $("carousel-position");
+let carouselIndex = 0;
+let carouselAnimating = false;
+let carouselTimer;
+function moveCarousel(direction) {
+  if (carouselAnimating || carouselTrack.children.length < 2) return;
+  carouselAnimating = true;
+  const incoming = direction === "right"
+    ? carouselTrack.lastElementChild
+    : carouselTrack.firstElementChild;
+  if (direction === "right") carouselTrack.prepend(incoming);
+  carouselTrack.style.transition = "none";
+  carouselTrack.style.transform = direction === "right" ? "translateX(-100%)" : "translateX(0)";
+  carouselTrack.getBoundingClientRect();
+  carouselTrack.style.transition = "transform 700ms ease";
+  carouselTrack.style.transform = direction === "right" ? "translateX(0)" : "translateX(-100%)";
+  const finishMove = () => {
+    carouselTrack.removeEventListener("transitionend", finishMove);
+    if (direction === "left") carouselTrack.append(carouselTrack.firstElementChild);
+    carouselTrack.style.transition = "none";
+    carouselTrack.style.transform = "translateX(0)";
+    carouselAnimating = false;
+    carouselIndex = (carouselIndex + (direction === "right" ? 2 : 1)) % 3;
+    carouselPosition.textContent = `${carouselIndex + 1} / 3`;
+  };
+  carouselTrack.addEventListener("transitionend", finishMove, { once: true });
+}
+$("carousel-previous").addEventListener("click", () => moveCarousel("right"));
+$("carousel-next").addEventListener("click", () => moveCarousel("left"));
+function startCarousel() {
+  if (carouselTimer || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  carouselTimer = window.setInterval(() => {
+    if (!document.hidden && !$("v-home").hidden) moveCarousel("left");
+  }, 5200);
+}
+function stopCarousel() {
+  window.clearInterval(carouselTimer);
+  carouselTimer = undefined;
+}
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) stopCarousel();
+  else startCarousel();
+});
+startCarousel();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const P = n => "P" + Math.round(n).toLocaleString("en-US");
+const sgn = n => (n > 0 ? "+" : n < 0 ? "−" : "") + P(Math.abs(n));
+const picked = new Set();
+const rooms = [...new Set(L.map(x => x.room_group))].sort();
+const flags = ["Under-priced", "Fair", "Over-priced"];
+const maxD = Math.ceil(Math.max(...L.map(x => x.distance_km)));
+$("rooms").innerHTML = rooms.map(r => `<label class="chk"><input type="checkbox" class="rm" value="${esc(r)}" checked> ${esc(r)}</label>`).join("");
+$("flags").innerHTML = flags.map(r => `<label class="chk"><input type="checkbox" class="fl" value="${r}" checked> ${r}</label>`).join("");
+$("dist").max = maxD;
+function reset() {
+  $("dist").value = maxD; $("pmin").value = ""; $("pmax").value = ""; $("stars").value = ""; $("seg").value = ""; $("sort").value = "score";
+  document.querySelectorAll(".rm,.fl").forEach(c => c.checked = true); render();
+}
+function card(x) {
+  const cls = x.flag === "Under-priced" ? "u" : x.flag === "Over-priced" ? "o" : "f";
+  const sym = x.flag === "Under-priced" ? "▼ " : x.flag === "Over-priced" ? "▲ " : "● ";
+  const on = picked.has(x.id), dis = !on && picked.size >= 3;
+  return `<article class="card"><div class="top"><span class="rk">#${x.rank}</span><span class="seg">${x.segment}</span></div>
+<h3>${esc(x.name)}</h3>
+<p class="mut no-margin">${esc(x.room_type)} · ${x.distance_km} km from centre${x.stars ? " · " + x.stars + "-star" : ""}</p>
+<div class="prices"><div><span class="mut">Listed</span><strong>${P(x.price)}</strong></div><div><span class="mut">Fair price</span><strong>${P(x.fair_price)}</strong></div><div><span class="mut">Gap</span><strong>${sgn(x.gap)}</strong></div></div>
+<div class="row"><span class="pill ${cls}">${sym}${x.flag}</span><span class="mut">Score ${x.score}</span></div>
+<span class="mut">Review score ${x.review_score} (${x.reviews} reviews)</span>
+<label class="chk"><input type="checkbox" data-id="${x.id}" ${on ? "checked" : ""} ${dis ? "disabled" : ""}> Add to compare</label></article>`;
+}
+function render() {
+  $("dv").textContent = $("dist").value;
+  const pmin = parseFloat($("pmin").value), pmax = parseFloat($("pmax").value), st = $("stars").value, sg = $("seg").value;
+  const rm = [...document.querySelectorAll(".rm:checked")].map(c => c.value), fl = [...document.querySelectorAll(".fl:checked")].map(c => c.value);
+  let r = L.filter(x => x.distance_km <= +$("dist").value && (isNaN(pmin) || x.price >= pmin) && (isNaN(pmax) || x.price <= pmax)
+    && (st === "" || (st === "0" ? !x.stars : x.stars === +st)) && (sg === "" || x.segment === sg) && rm.includes(x.room_group) && fl.includes(x.flag));
+  const s = $("sort").value;
+  r.sort(s === "price" ? (a, b) => a.price - b.price : s === "value" ? (a, b) => a.gap - b.gap : (a, b) => a.rank - b.rank);
+  $("count").textContent = r.length + " of " + L.length + " listings in Francistown";
+  $("grid").innerHTML = r.length ? r.map(card).join("") : '<div class="empty">No listings match these filters. Try widening the price or distance range.</div>';
+  $("tc").textContent = "Compare (" + picked.size + ")";
+}
+function renderCompare() {
+  const s = L.filter(x => picked.has(x.id));
+  if (!s.length) { $("ctab").innerHTML = '<div class="empty">Nothing selected yet. Tick “Add to compare” on up to 3 listings.</div>'; return; }
+  const best = [...s].sort((a, b) => a.gap - b.gap)[0];
+  const row = (h, f) => `<tr><th scope="row">${h}</th>${s.map(x => "<td>" + f(x) + "</td>").join("")}</tr>`;
+  $("ctab").innerHTML = `<div class="tw"><table><thead><tr><th scope="col">Attribute</th>${s.map(x => `<th scope="col">${esc(x.name)}</th>`).join("")}</tr></thead><tbody>
+${row("Listed price / night", x => P(x.price))}${row("Predicted fair price", x => P(x.fair_price))}${row("Gap (listed minus fair)", x => sgn(x.gap) + " (" + x.gap_pct + "%)")}
+${row("Price flag", x => x.flag)}${row("Review score", x => x.review_score + " (" + x.reviews + " reviews)")}${row("Room type", x => esc(x.room_type))}
+${row("Distance from centre", x => x.distance_km + " km")}${row("Star rating", x => x.stars ? x.stars + "-star" : "Not rated")}${row("Score and rank", x => x.score + " · #" + x.rank)}${row("Segment", x => x.segment)}</tbody></table></div>
+<p class="note">Best value of these: ${esc(best.name)}, with the largest gap below its fair price (${sgn(best.gap)}).</p>`;
+}
+$("clear").onclick = () => { picked.clear(); renderCompare(); $("tc").textContent = "Compare (0)"; };
+$("reset").onclick = reset;
+document.querySelectorAll("aside select,aside input").forEach(e => e.addEventListener("input", render));
+$("grid").addEventListener("change", e => { const id = +e.target.dataset.id; if (!id) return; e.target.checked ? picked.add(id) : picked.delete(id); render(); });
+$("note").textContent = "Fair prices come from a regression model trained on " + M.n_listings + " collected listings. Its typical error is about " + P(M.loo_mae_bwp) + ", so a listing is only flagged when it differs from its fair price by more than " + P(M.flag_band_bwp) + ". Treat flags as a guide, not a verdict.";
+reset();
+
+const TEAM = ""; // add your team or group name here
+const VIEWS = {home:"tab-home", explore:"tab-explore", compare:"tc"};
+function go(v) {
+  for (const n in VIEWS) { $("v-" + n).hidden = n !== v; const t = $(VIEWS[n]); n === v ? t.setAttribute("aria-current", "page") : t.removeAttribute("aria-current"); }
+  if (v === "compare") renderCompare(); if (v === "explore") render(); window.scrollTo(0, 0);
+}
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-go]"); if (g) { go(g.dataset.go); return; }
+  const s = e.target.closest("[data-scroll]"); if (s) { go("home"); setTimeout(() => $(s.dataset.scroll).scrollIntoView({behavior: "smooth"}), 30); }
+});
+$("foot").textContent = "Accommodation Explorer · A Business Intelligence & Data Analytics project, Botswana Accountancy College, Francistown." + (TEAM ? " Team: " + TEAM + "." : "") + " Fair prices are model estimates based on collected listings and are indicative only.";
+go("home");
+</script>
+</body>
+</html>
