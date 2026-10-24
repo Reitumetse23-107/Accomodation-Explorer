@@ -87,7 +87,7 @@
 <div class="f"><span>Price flag</span><div id="flags"></div></div>
 <button class="btn" id="reset">Reset filters</button>
 </aside>
-<main><div class="bar"><strong id="count"></strong></div><div class="grid" id="grid"></div>
+<main><div class="bar"><strong id="count"></strong><span id="search-time" class="mut">Search time: 0.00 ms</span></div><div class="grid" id="grid"></div>
 <p class="note" id="note"></p></main>
 </div>
 </section>
@@ -215,6 +215,8 @@ function card(x) {
 <label class="chk"><input type="checkbox" data-id="${x.id}" ${on ? "checked" : ""} ${dis ? "disabled" : ""}> Add to compare</label></article>`;
 }
 function render() {
+  const t0 = performance.now();
+
   $("dv").textContent = $("dist").value;
   const pmin = parseFloat($("pmin").value), pmax = parseFloat($("pmax").value), st = $("stars").value, sg = $("seg").value;
   const rm = [...document.querySelectorAll(".rm:checked")].map(c => c.value), fl = [...document.querySelectorAll(".fl:checked")].map(c => c.value);
@@ -224,6 +226,12 @@ function render() {
   r.sort(s === "price" ? (a, b) => a.price - b.price : s === "value" ? (a, b) => a.gap - b.gap : (a, b) => a.rank - b.rank);
   $("count").textContent = r.length + " of " + L.length + " listings in Francistown";
   $("grid").innerHTML = r.length ? r.map(card).join("") : '<div class="empty">No listings match these filters. Try widening the price or distance range.</div>';
+
+  const t1 = performance.now();
+  const elapsed = (t1 - t0).toFixed(2);
+  $("search-time").textContent = "Search + render: " + elapsed + " ms";
+  console.log("Filter benchmark:", elapsed, "ms");
+
   $("tc").textContent = "Compare (" + picked.size + ")";
 }
 function renderCompare() {
