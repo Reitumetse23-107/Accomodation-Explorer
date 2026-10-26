@@ -1,0 +1,2 @@
+Start website- cd "C:\Users\raime\Desktop\RESEARCH AND INNOVATION\accomodation website\myproject"
+.\.venv\Scripts\python.exe app.py

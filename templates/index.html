@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<div id="topbar"><div class="in"><button class="logo" data-go="home"><img src="{{ url_for('static', filename='accommodation-explorer-logo.png') }}" alt="" aria-hidden="true">Accommodation Explorer</button><nav aria-label="Main"><button class="tab" id="tab-home" data-go="home">Home</button><button class="tab" id="tab-explore" data-go="explore">Explore</button><button class="tab" id="tc" data-go="compare">Compare (0)</button><button class="tab" data-scroll="honest">About the data</button><button class="tab theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">Dark mode</button></nav></div></div>
+<div id="topbar"><div class="in"><button class="logo" data-go="home"><img src="{{ url_for('static', filename='accommodation-explorer-logo.png') }}" alt="" aria-hidden="true">Accommodation Explorer</button><nav aria-label="Main"><button class="tab" id="tab-home" data-go="home">Home</button><button class="tab" id="tab-explore" data-go="explore">Explore</button><button class="tab" id="tc" data-go="compare">Compare (0)</button><button class="tab" data-scroll="honest">About the data</button><button class="tab theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><svg class="theme-icon moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"/></svg><svg class="theme-icon sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button></nav></div></div>
 <section id="v-home"><div class="hero">
 <div class="w">
 
@@ -76,7 +76,9 @@
 </div>
 
 </section>
-<section id="v-explore" hidden><div class="wrap">
+<section id="v-explore" hidden>
+<header class="page-intro"><span class="eyebrow">Find your next stay</span><h1>Explore Francistown.</h1><p>Compare real listings with a fair-price estimate, then find the stay that fits.</p></header>
+<div class="wrap">
 <aside aria-label="Filters">
 <div class="f"><label for="sort">Sort by</label><select id="sort"><option value="score">Best score</option><option value="price">Lowest price</option><option value="value">Best value (biggest under-priced gap)</option></select></div>
 <div class="f"><label for="dist">Distance from centre: up to <span id="dv"></span> km</label><input type="range" id="dist" min="1" step="1"></div>
@@ -91,8 +93,8 @@
 <p class="note" id="note"></p></main>
 </div>
 </section>
-<section id="v-compare" hidden><div class="wrap single-column"><div>
-<div class="bar"><div><h2 class="no-margin">Compare listings</h2><span class="mut">Pick up to 3 on the Browse view</span></div><button class="btn" id="clear">Clear selection</button></div>
+<section id="v-compare" hidden><header class="page-intro"><span class="eyebrow">Your shortlist</span><h1>Compare stays.</h1><p>See prices, reviews and location side by side to make a confident choice.</p></header><div class="wrap single-column"><div>
+<div class="bar"><div><h2 class="no-margin">Your selected stays</h2><span class="mut">Pick up to 3 in Explore</span></div><button class="btn" id="clear">Clear selection</button></div>
 <div id="ctab"></div></div></div></section>
 <footer>
 <div class="social-links" aria-label="Social media contacts">
@@ -129,7 +131,6 @@ function syncThemeToggle() {
   const theme = document.documentElement.dataset.theme
     || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   const isDark = theme === "dark";
-  themeToggle.textContent = isDark ? "Light mode" : "Dark mode";
   themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
   themeToggle.setAttribute("aria-pressed", String(isDark));
 }
@@ -195,6 +196,38 @@ const picked = new Set();
 const rooms = [...new Set(L.map(x => x.room_group))].sort();
 const flags = ["Under-priced", "Fair", "Over-priced"];
 const maxD = Math.ceil(Math.max(...L.map(x => x.distance_km)));
+const propertyPhotos = {
+  dudes: [
+    { src: "{{ url_for('static', filename='images/dudes-guesthouse-1.jpg') }}", alt: "Bedroom at Dudes guesthouse", label: "Bedroom" },
+    { src: "{{ url_for('static', filename='images/dudes-guesthouse-2.jpg') }}", alt: "Dining table at Dudes guesthouse", label: "Dining area" },
+    { src: "{{ url_for('static', filename='images/dudes-guesthouse-3.jpg') }}", alt: "Laundry area at Dudes guesthouse", label: "Laundry area" },
+  ],
+  fabulous: [
+    { src: "{{ url_for('static', filename='images/fabulous-rest-inn-1.jpg') }}", alt: "Bedroom at Fabulous Rest Inn", label: "Bedroom" },
+    { src: "{{ url_for('static', filename='images/fabulous-rest-inn-2.jpg') }}", alt: "Bed and seating area at Fabulous Rest Inn", label: "Seating area" },
+    { src: "{{ url_for('static', filename='images/fabulous-rest-inn-3.jpg') }}", alt: "Wardrobe and seating area at Fabulous Rest Inn", label: "Wardrobe" },
+  ],
+  diggers: [
+    { src: "{{ url_for('static', filename='images/diggers-inn-1.jpg') }}", alt: "Exterior of Diggers Inn", label: "Exterior" },
+    { src: "{{ url_for('static', filename='images/diggers-inn-2.jpg') }}", alt: "Guest bedroom at Diggers Inn", label: "Bedroom" },
+    { src: "{{ url_for('static', filename='images/diggers-inn-3.jpg') }}", alt: "Bathroom at Diggers Inn", label: "Bathroom" },
+  ],
+  villaCentral: [
+    { src: "{{ url_for('static', filename='images/villa-central-1.jpg') }}", alt: "Bedroom at Villa Central", label: "Bedroom" },
+    { src: "{{ url_for('static', filename='images/villa-central-2.jpg') }}", alt: "Second bedroom at Villa Central", label: "Bedroom" },
+    { src: "{{ url_for('static', filename='images/villa-central-3.jpg') }}", alt: "Lounge area at Villa Central", label: "Lounge" },
+  ],
+  cosyCottageBlock9: [
+    { src: "{{ url_for('static', filename='images/cosy-cottage-block-9-1.jpg') }}", alt: "Kitchen and lounge area at Cosy Cottage Apartments Block 9", label: "Kitchen and lounge" },
+    { src: "{{ url_for('static', filename='images/cosy-cottage-block-9-2.jpg') }}", alt: "Bedroom at Cosy Cottage Apartments Block 9", label: "Bedroom" },
+    { src: "{{ url_for('static', filename='images/cosy-cottage-block-9-3.jpg') }}", alt: "Living room at Cosy Cottage Apartments Block 9", label: "Living room" },
+  ],
+  sameStayInn: [
+    { src: "{{ url_for('static', filename='images/same-stay-inn-1.jpg') }}", alt: "Guest room at Same Stay Inn", label: "Guest room" },
+    { src: "{{ url_for('static', filename='images/same-stay-inn-2.jpg') }}", alt: "Lounge and dining area at Same Stay Inn", label: "Lounge and dining" },
+    { src: "{{ url_for('static', filename='images/same-stay-inn-3.jpg') }}", alt: "Bedroom at Same Stay Inn", label: "Bedroom" },
+  ],
+};
 $("rooms").innerHTML = rooms.map(r => `<label class="chk"><input type="checkbox" class="rm" value="${esc(r)}" checked> ${esc(r)}</label>`).join("");
 $("flags").innerHTML = flags.map(r => `<label class="chk"><input type="checkbox" class="fl" value="${r}" checked> ${r}</label>`).join("");
 $("dist").max = maxD;
@@ -206,7 +239,13 @@ function card(x) {
   const cls = x.flag === "Under-priced" ? "u" : x.flag === "Over-priced" ? "o" : "f";
   const sym = x.flag === "Under-priced" ? "▼ " : x.flag === "Over-priced" ? "▲ " : "● ";
   const on = picked.has(x.id), dis = !on && picked.size >= 3;
-  return `<article class="card"><div class="top"><span class="rk">#${x.rank}</span><span class="seg">${x.segment}</span></div>
+  const galleryKey = x.name === "Dudes guesthouse" ? "dudes" : x.name === "Fabulous Rest Inn" ? "fabulous" : x.name === "Diggers Inn" ? "diggers" : x.name === "Villa Central" ? "villaCentral" : x.name === "Cosy Cottage Apartments Block 9" ? "cosyCottageBlock9" : x.name === "Same Stay Inn" ? "sameStayInn" : "";
+  const photos = propertyPhotos[galleryKey];
+  const gallery = photos ? `<div class="listing-gallery" role="region" aria-label="${esc(x.name)} photos. Swipe or use the left and right arrow keys to navigate." aria-roledescription="carousel" aria-keyshortcuts="ArrowLeft ArrowRight" tabindex="0" data-gallery="${galleryKey}" data-gallery-index="0">
+<img src="${photos[0].src}" alt="${photos[0].alt}">
+<span class="gallery-count" aria-live="off">1 / ${photos.length} · ${photos[0].label}</span>
+</div>` : "";
+  return `<article class="card">${gallery}<div class="top"><span class="rk">#${x.rank}</span><span class="seg">${x.segment}</span></div>
 <h3>${esc(x.name)}</h3>
 <p class="mut no-margin">${esc(x.room_type)} · ${x.distance_km} km from centre${x.stars ? " · " + x.stars + "-star" : ""}</p>
 <div class="prices"><div><span class="mut">Listed</span><strong>${P(x.price)}</strong></div><div><span class="mut">Fair price</span><strong>${P(x.fair_price)}</strong></div><div><span class="mut">Gap</span><strong>${sgn(x.gap)}</strong></div></div>
@@ -214,6 +253,59 @@ function card(x) {
 <span class="mut">Review score ${x.review_score} (${x.reviews} reviews)</span>
 <label class="chk"><input type="checkbox" data-id="${x.id}" ${on ? "checked" : ""} ${dis ? "disabled" : ""}> Add to compare</label></article>`;
 }
+function changeGalleryPhoto(gallery, direction) {
+  const photos = propertyPhotos[gallery.dataset.gallery];
+  const currentIndex = Number(gallery.dataset.galleryIndex);
+  const nextIndex = (currentIndex + direction + photos.length) % photos.length;
+  const photo = photos[nextIndex];
+  gallery.dataset.galleryIndex = String(nextIndex);
+  gallery.querySelector("img").src = photo.src;
+  gallery.querySelector("img").alt = photo.alt;
+  gallery.querySelector(".gallery-count").textContent = `${nextIndex + 1} / ${photos.length} · ${photo.label}`;
+}
+function advanceGallery(gallery) {
+  changeGalleryPhoto(gallery, 1);
+}
+const listingGrid = $("grid");
+let galleryTouchStartX;
+listingGrid.addEventListener("touchstart", event => {
+  if (event.touches.length !== 1) return;
+  const gallery = event.target.closest(".listing-gallery");
+  galleryTouchStartX = gallery ? event.touches[0].clientX : undefined;
+}, { passive: true });
+listingGrid.addEventListener("touchend", event => {
+  if (galleryTouchStartX === undefined) return;
+  const gallery = event.target.closest(".listing-gallery");
+  const touchEndX = event.changedTouches[0].clientX;
+  const swipeDistance = touchEndX - galleryTouchStartX;
+  galleryTouchStartX = undefined;
+  if (gallery && Math.abs(swipeDistance) > 35) {
+    changeGalleryPhoto(gallery, swipeDistance < 0 ? 1 : -1);
+  }
+}, { passive: true });
+listingGrid.addEventListener("keydown", event => {
+  const gallery = event.target.closest(".listing-gallery");
+  if (!gallery || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) return;
+  event.preventDefault();
+  changeGalleryPhoto(gallery, event.key === "ArrowRight" ? 1 : -1);
+});
+let listingGalleryTimer;
+function startListingGalleries() {
+  if (listingGalleryTimer || document.hidden || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  listingGalleryTimer = window.setInterval(() => {
+    document.querySelectorAll("#grid .listing-gallery").forEach(gallery => {
+      if (!$("v-explore").hidden && !gallery.matches(":hover")) advanceGallery(gallery);
+    });
+  }, 4500);
+}
+function stopListingGalleries() {
+  window.clearInterval(listingGalleryTimer);
+  listingGalleryTimer = undefined;
+}
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden || $("v-explore").hidden) stopListingGalleries();
+  else startListingGalleries();
+});
 function render() {
   const t0 = performance.now();
 
@@ -256,7 +348,10 @@ const TEAM = ""; // add your team or group name here
 const VIEWS = {home:"tab-home", explore:"tab-explore", compare:"tc"};
 function go(v) {
   for (const n in VIEWS) { $("v-" + n).hidden = n !== v; const t = $(VIEWS[n]); n === v ? t.setAttribute("aria-current", "page") : t.removeAttribute("aria-current"); }
-  if (v === "compare") renderCompare(); if (v === "explore") render(); window.scrollTo(0, 0);
+  if (v === "compare") renderCompare();
+  if (v === "explore") { render(); startListingGalleries(); }
+  else stopListingGalleries();
+  window.scrollTo(0, 0);
 }
 document.addEventListener("click", e => {
   const g = e.target.closest("[data-go]"); if (g) { go(g.dataset.go); return; }
