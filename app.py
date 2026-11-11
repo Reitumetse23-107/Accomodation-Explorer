@@ -3,12 +3,15 @@ from pathlib import Path
 
 from flask import Flask, render_template
 
+from pricing_model import train_pricing_model
+
 app = Flask(__name__)
 
 BASE_DIR = Path(__file__).resolve().parent
-EXPLORER_DATA = json.loads(
+SOURCE_DATA = json.loads(
     (BASE_DIR / "data" / "listings_scored.json").read_text(encoding="utf-8")
 )
+EXPLORER_DATA, PRICING_MODEL = train_pricing_model(SOURCE_DATA)
 
 
 @app.route("/")
